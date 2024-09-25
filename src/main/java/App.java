@@ -22,6 +22,15 @@ public class App {
 
     public static void loadFromFile(int[] result) throws FileNotFoundException {
         URL p = App.class.getResource("/test.txt");
+        if (p == null) {
+            System.out.println("Path to file not found");
+            return;
+        }
+        if (p.getPath() == null) {
+            System.out.println("Path is null");
+            return;
+        }
+        System.out.println(p.getPath());
         File file = new File(p.getPath());
         Scanner scanner = new Scanner(file);
         int i = 0;
