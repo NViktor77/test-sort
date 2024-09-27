@@ -3,13 +3,16 @@ package main.java;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URL;
+import java.util.Random;
 import java.util.Scanner;
 
 public class App {
-    public static void main(String[] arg) {
+    public static void main(String[] arg) throws FileNotFoundException {
         System.out.println("Hello!!!!");
         int[] result = new int[20];
         loadFromFile(result);
+        print(result);
+        sort(result);
         print(result);
     }
 
@@ -38,9 +41,22 @@ public class App {
             result[i] = scanner.nextInt();
             ++i;
         }
+        Random rand = new Random();
+        while (i < result.length) {
+            result[i] = rand.nextInt(100);
+            ++i;
+        }
     }
 
     public static void sort(int[] orig) {
-
+        for (int i = 0; i < orig.length; i++) {
+            for (int j = 0; j < orig.length - 1; j++) {
+                if (orig[j] > orig[j + 1]) {
+                    int x = orig[j];
+                    orig[j] = orig[j + 1];
+                    orig[j + 1] = x;
+                }
+            }
+        }
     }
 }
